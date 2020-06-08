@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liaojie.dao.provider.ProviderMapper">
+
+    <!--查询所有的供应商的数据-->
+    <select id="Prolist" resultType="Provider">
+        select * from smbms_provider;
+    </select>
+
+    <!--按照供应商名称模糊查询供应商信息的功能-->
+    <select id="ProFuzzyQuery" resultType="Provider" parameterType="Provider">
+        select * from smbms_provider where proName like CONCAT ('%',#{proName},'%');
+    </select>
+
+    <!-- 添加供应商 -->
+    <insert id="ProAdd" parameterType="Provider">insert into smbms_provider
+        (proCode,proName,proDesc,proContact,proPhone,proAddress,proFax,createdBy,creationDate)
+        values
+        (#{proCode},#{proName},#{proDesc},#{proContact},#{proPhone},#{proAddress},#{proFax},#{createdBy},#{creationDate})
+    </insert>
+</mapper>
